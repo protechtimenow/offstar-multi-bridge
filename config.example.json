@@ -1,0 +1,66 @@
+{
+  "port": 3000,
+  "bridgePort": 3001,
+  "apiKeys": {
+    "github": "ghp_your_github_token_here",
+    "openai": "sk-your_openai_key_here",
+    "discord": "your_discord_bot_token_here",
+    "slack": "xoxb-your_slack_bot_token_here",
+    "telegram": "your_telegram_bot_token_here",
+    "stripe": "sk_live_your_stripe_secret_key",
+    "paypal": "your_paypal_client_secret",
+    "coinbase": "your_coinbase_api_secret"
+  },
+  "endpoints": {
+    "webhook": "/webhook",
+    "database": "sqlite://./bridge.db",
+    "fileStorage": "./storage"
+  },
+  "mcpConnections": [
+    {
+      "name": "file-server",
+      "endpoint": "ws://localhost:8080",
+      "autoConnect": false,
+      "protocol": "websocket",
+      "description": "File operations MCP server"
+    },
+    {
+      "name": "database-server", 
+      "endpoint": "ws://localhost:8081",
+      "autoConnect": false,
+      "protocol": "websocket",
+      "description": "Database operations MCP server"
+    }
+  ],
+  "security": {
+    "allowedCommands": ["ls", "pwd", "echo", "date", "whoami", "uname"],
+    "enableTerminal": true,
+    "enableVoice": true,
+    "corsOrigins": ["*"],
+    "rateLimit": {
+      "windowMs": 900000,
+      "max": 100
+    }
+  },
+  "mobile": {
+    "enableVoiceCommands": true,
+    "voiceLanguage": "en-US",
+    "enableFileSystem": false,
+    "enableNotifications": true,
+    "autoReconnect": true
+  },
+  "enterprise": {
+    "enableLogging": true,
+    "logLevel": "info",
+    "enableMetrics": true,
+    "metricsPort": 9090,
+    "enableHealthChecks": true,
+    "enableLoadBalancer": false
+  },
+  "bridges": {
+    "autoDiscovery": true,
+    "connectionTimeout": 30000,
+    "retryAttempts": 3,
+    "retryDelay": 5000
+  }
+}
