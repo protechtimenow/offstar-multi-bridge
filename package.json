@@ -1,0 +1,45 @@
+{
+  "name": "offstar-multi-bridge",
+  "version": "1.0.0",
+  "description": "Universal multi-bridge connector for OFFSTAR enterprise AGI business hub",
+  "main": "mobile-bridge.js",
+  "scripts": {
+    "start": "node mobile-bridge.js",
+    "mobile": "node mobile-bridge.js",
+    "voice": "node mobile-bridge.js voice",
+    "install-mobile": "chmod +x install.sh && ./install.sh",
+    "test": "curl http://localhost:3001/health",
+    "dev": "nodemon mobile-bridge.js",
+    "zip": "zip -r offstar-multi-bridge.zip . -x node_modules/\\* .git/\\* *.zip"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "socket.io": "^4.7.0",
+    "node-fetch": "^2.6.0",
+    "ws": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "bridge",
+    "connector",
+    "api",
+    "mcp",
+    "mobile",
+    "terminal",
+    "enterprise",
+    "agi",
+    "hub",
+    "offstar"
+  ],
+  "author": "OFFSTAR",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/protechtimenow/offstar-multi-bridge.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
