@@ -9,14 +9,28 @@
     "voice": "node mobile-bridge.js voice",
     "install-mobile": "chmod +x install.sh && ./install.sh",
     "test": "curl http://localhost:3001/health",
-    "dev": "nodemon mobile-bridge.js",
-    "zip": "zip -r offstar-multi-bridge.zip . -x node_modules/\\* .git/\\* *.zip"
+    "dev": "node dev-tools/deployment-monitor.js watch",
+    "monitor": "node dev-tools/deployment-monitor.js check",
+    "setup": "npm install && npm run setup-mcp",
+    "setup-mcp": "npm install @modelcontextprotocol/sdk @modelcontextprotocol/server-github @modelcontextprotocol/server-filesystem @modelcontextprotocol/server-web @modelcontextprotocol/server-terminal",
+    "preview": "open dev-tools/live-preview.html || start dev-tools/live-preview.html",
+    "build": "echo 'Build complete - OFFSTAR Multi-Bridge ready!'",
+    "deploy": "vercel --prod",
+    "logs": "vercel logs",
+    "zip": "zip -r offstar-multi-bridge.zip . -x node_modules/\\\\* .git/\\\\* *.zip"
   },
   "dependencies": {
     "express": "^4.18.0",
     "socket.io": "^4.7.0",
     "node-fetch": "^2.6.0",
-    "ws": "^8.0.0"
+    "ws": "^8.0.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "@modelcontextprotocol/server-github": "^0.4.0",
+    "@modelcontextprotocol/server-filesystem": "^0.4.0",
+    "@modelcontextprotocol/server-web": "^0.4.0",
+    "@modelcontextprotocol/server-terminal": "^0.4.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
@@ -31,7 +45,9 @@
     "enterprise",
     "agi",
     "hub",
-    "offstar"
+    "offstar",
+    "blockchain",
+    "ai"
   ],
   "author": "OFFSTAR",
   "license": "MIT",
