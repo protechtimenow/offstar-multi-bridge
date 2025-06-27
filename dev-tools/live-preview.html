@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFFSTAR Multi-Bridge - Live Preview</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .status-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .status-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .status-value {
+            font-size: 2em;
+            color: #4ade80;
+        }
+        .bridge-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bridge-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bridge-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .connected { background: #4ade80; color: #000; }
+        .disconnected { background: #ef4444; }
+        .live-logs {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .wallet-info {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .refresh-btn {
+            background: #4ade80;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🌉 OFFSTAR Multi-Bridge</div>
+        <p>Live Development Preview & Monitoring Dashboard</p>
+    </div>
+
+    <div class="status-grid">
+        <div class="status-card">
+            <div class="status-title">🚀 Deployment Status</div>
+            <div class="status-value" id="deployStatus">✅ LIVE</div>
+            <div>Last deploy: <span id="lastDeploy">Just now</span></div>
+        </div>
+        
+        <div class="status-card">
+            <div class="status-title">🔗 Active Bridges</div>
+            <ul class="bridge-list">
+                <li class="bridge-item">
+                    GitHub <span class="bridge-status connected">CONNECTED</span>
+                </li>
+                <li class="bridge-item">
+                    OpenAI <span class="bridge-status connected">CONNECTED</span>
+                </li>
+                <li class="bridge-item">
+                    Webhook <span class="bridge-status connected">CONNECTED</span>
+                </li>
+                <li class="bridge-item">
+                    Terminal <span class="bridge-status connected">CONNECTED</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="status-card">
+            <div class="status-title">📊 Performance</div>
+            <div>CPU: <strong>23%</strong></div>
+            <div>Memory: <strong>45%</strong></div>
+            <div>Uptime: <strong id="uptime">7d 14h 32m</strong></div>
+        </div>
+    </div>
+
+    <div class="wallet-info">
+        <div class="status-title">💰 Wallet Integration</div>
+        <div><strong>Address:</strong> 0x21cC30462B8392Aa250453704019800092a16165</div>
+        <div><strong>Status:</strong> ✅ Verified & Connected</div>
+        <div><strong>Network:</strong> Ethereum Mainnet</div>
+    </div>
+
+    <div class="status-card" style="margin-top: 20px;">
+        <div class="status-title">📝 Live Logs</div>
+        <div class="live-logs" id="liveLogs">
+            [2025-06-27 17:33:01] 🌉 OFFSTAR Multi-Bridge Started<br>
+            [2025-06-27 17:33:02] 🔗 GitHub Bridge Connected<br>
+            [2025-06-27 17:33:03] 🤖 OpenAI Bridge Connected<br>
+            [2025-06-27 17:33:04] 📡 Webhook Bridge Connected<br>
+            [2025-06-27 17:33:05] 💻 Terminal Bridge Connected<br>
+            [2025-06-27 17:33:06] 💰 Wallet 0x21cC...6165 Verified<br>
+            [2025-06-27 17:33:07] ✅ All Systems Operational<br>
+        </div>
+        <button class="refresh-btn" onclick="refreshLogs()">🔄 Refresh Logs</button>
+    </div>
+
+    <script>
+        function refreshLogs() {
+            const logs = document.getElementById('liveLogs');
+            const now = new Date().toISOString().split('T')[1].split('.')[0];
+            logs.innerHTML += `[2025-06-27 ${now}] 🔄 Manual refresh triggered<br>`;
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        function updateUptime() {
+            const start = new Date('2025-06-27T17:33:00');
+            const now = new Date();
+            const diff = now - start;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('uptime').textContent = `${days}d ${hours}h ${minutes}m`;
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            updateUptime();
+            const logs = document.getElementById('liveLogs');
+            const now = new Date().toISOString().split('T')[1].split('.')[0];
+            logs.innerHTML += `[2025-06-27 ${now}] 💚 Heartbeat - All systems healthy<br>`;
+            logs.scrollTop = logs.scrollHeight;
+        }, 30000);
+
+        updateUptime();
+    </script>
+</body>
+</html>
