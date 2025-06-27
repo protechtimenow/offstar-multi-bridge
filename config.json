@@ -1,0 +1,24 @@
+{
+  "port": 3000,
+  "bridgePort": 3001,
+  "github": {
+    "enabled": true,
+    "token": ""
+  },
+  "openai": {
+    "enabled": false,
+    "apiKey": ""
+  },
+  "webhook": {
+    "enabled": true,
+    "secret": ""
+  },
+  "terminal": {
+    "enabled": true,
+    "allowCommands": ["ls", "pwd", "echo"]
+  },
+  "walletSecurity": {
+    "enabled": true,
+    "authorizedWallet": "0x21cC30462B8392Aa250453704019800092a16165"
+  }
+}
