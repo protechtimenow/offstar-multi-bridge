@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "@modelcontextprotocol/server-github",
+      "args": [
+        "--owner", "protechtimenow",
+        "--repo", "offstar-multi-bridge",
+        "--token", "${GITHUB_TOKEN}"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "filesystem": {
+      "command": "@modelcontextprotocol/server-filesystem",
+      "args": [
+        "--base-path", "${workspaceFolder}",
+        "--allowed-extensions", ".js,.json,.md,.py,.ts,.tsx,.jsx,.html,.css"
+      ]
+    },
+    "web": {
+      "command": "@modelcontextprotocol/server-web",
+      "args": ["--port", "8080"]
+    },
+    "terminal": {
+      "command": "@modelcontextprotocol/server-terminal",
+      "args": ["--shell", "bash"]
+    },
+    "offstar-bridge": {
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp/offstar-mcp-server.js"],
+      "env": {
+        "OFFSTAR_WALLET": "0x21cC30462B8392Aa250453704019800092a16165",
+        "NODE_ENV": "development"
+      }
+    }
+  }
+}
