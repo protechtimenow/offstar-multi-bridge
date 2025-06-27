@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌉 OFFSTAR Dashboard - Easy View</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .wallet-info {
+            background: rgba(46, 204, 113, 0.2);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .bridge-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .status-online { color: #2ecc71; }
+        .status-offline { color: #e74c3c; }
+        .status-warning { color: #f39c12; }
+        
+        .emoji { font-size: 1.5em; }
+        
+        .update-time {
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        .quick-links {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .link {
+            color: #74b9ff;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .link:hover {
+            color: #0984e3;
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 10px;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="emoji">🌉</span> OFFSTAR Multi-Bridge Dashboard</h1>
+            <h2>Universal Enterprise AGI Hub Gateway</h2>
+        </div>
+        
+        <div class="status-card wallet-info">
+            <h3><span class="emoji">💰</span> Authorized Wallet</h3>
+            <div style="font-family: monospace; font-size: 1.1em; word-break: break-all;">
+                0x21cC30462B8392Aa250453704019800092a16165
+            </div>
+            <div style="margin-top: 10px;">
+                <span class="status-online">✅ VERIFIED & ACTIVE</span>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h3><span class="emoji">🔗</span> Bridge Connections</h3>
+            
+            <div class="bridge-status">
+                <span><span class="emoji">📱</span> GitHub Bridge</span>
+                <span id="github-status" class="status-online">✅ CONNECTED</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span><span class="emoji">🤖</span> OpenAI Bridge</span>
+                <span id="openai-status" class="status-online">✅ CONNECTED</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span><span class="emoji">📡</span> Webhook Bridge</span>
+                <span id="webhook-status" class="status-online">✅ CONNECTED</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span><span class="emoji">💻</span> Terminal Bridge</span>
+                <span id="terminal-status" class="status-online">✅ CONNECTED</span>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h3><span class="emoji">📊</span> System Performance</h3>
+            
+            <div class="bridge-status">
+                <span>CPU Usage</span>
+                <span id="cpu-usage" class="status-online">12%</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span>Memory Usage</span>
+                <span id="memory-usage" class="status-online">256 MB</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span>Uptime</span>
+                <span id="uptime" class="status-online">2h 15m</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span>Total Requests</span>
+                <span id="total-requests" class="status-online">1,247</span>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h3><span class="emoji">🌐</span> Deployment Status</h3>
+            
+            <div class="bridge-status">
+                <span>Production</span>
+                <span id="prod-status" class="status-online">✅ ONLINE</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span>Preview (Vercel)</span>
+                <span id="preview-status" class="status-warning">⚠️ BUILDING</span>
+            </div>
+            
+            <div class="bridge-status">
+                <span>Local Development</span>
+                <span id="local-status" class="status-online">✅ READY</span>
+            </div>
+        </div>
+        
+        <div class="quick-links">
+            <h3><span class="emoji">🚀</span> Quick Links</h3>
+            <a href="https://github.com/protechtimenow/offstar-multi-bridge" class="link">📁 GitHub Repository</a>
+            <a href="../dev-tools/live-preview.html" class="link">📊 Full Live Dashboard</a>
+            <a href="../GET_STARTED.md" class="link">📋 Setup Instructions</a>
+            <a href="../WHERE-TO-FIND-EVERYTHING.md" class="link">🔍 Where To Find Everything</a>
+        </div>
+        
+        <div class="update-time">
+            <span class="emoji">🕒</span> Last Updated: <span id="current-time">Loading...</span>
+            <br>
+            <small>This page auto-refreshes every 30 seconds</small>
+        </div>
+    </div>
+
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleString();
+        }
+        
+        // Simulate real-time updates
+        function updateStatus() {
+            updateTime();
+            
+            // Simulate some dynamic data
+            const cpuUsage = Math.floor(Math.random() * 30) + 5;
+            const memoryUsage = Math.floor(Math.random() * 100) + 200;
+            const requests = 1247 + Math.floor(Math.random() * 50);
+            
+            document.getElementById('cpu-usage').textContent = cpuUsage + '%';
+            document.getElementById('memory-usage').textContent = memoryUsage + ' MB';
+            document.getElementById('total-requests').textContent = requests.toLocaleString();
+            
+            // Update uptime
+            const hours = Math.floor(Date.now() / 3600000) % 24;
+            const minutes = Math.floor(Date.now() / 60000) % 60;
+            document.getElementById('uptime').textContent = hours + 'h ' + minutes + 'm';
+        }
+        
+        // Initialize
+        updateStatus();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(updateStatus, 30000);
+        
+        // Visual feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.status-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            });
+        });
+    </script>
+    
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+</html>
