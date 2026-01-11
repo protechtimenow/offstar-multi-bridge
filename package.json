@@ -26,9 +26,9 @@
     "ws": "^8.0.0",
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
-    "@modelcontextprotocol/sdk": "^0.4.0",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "@modelcontextprotocol/server-github": "^0.4.0",
-    "@modelcontextprotocol/server-filesystem": "^0.4.0",
+    "@modelcontextprotocol/server-filesystem": "^2025.11.25",
     "@modelcontextprotocol/server-web": "^0.4.0",
     "@modelcontextprotocol/server-terminal": "^0.4.0"
   },
